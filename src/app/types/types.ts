@@ -13,3 +13,13 @@ export interface UserDataType {
     bio: string | null;
     created_at: string;
 }
+
+export interface UserInfoType {
+    type: string;
+    info: string | number;
+}
+
+export interface UserDetailType {
+    type: string;
+    detail: string;
+}

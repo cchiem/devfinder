@@ -1,7 +1,8 @@
 import Image from "next/image";
 import React from "react";
+import { UserDetailType } from "../types/types";
 
-const UserInfo = ({ type, detail }: any) => {
+const UserInfo = ({ type, detail }: UserDetailType) => {
     return (
         <div className="flex gap-4 items-center text-[15px]">
             <Image
@@ -11,7 +12,7 @@ const UserInfo = ({ type, detail }: any) => {
                 height={20}
             />
             {type == "website" ? (
-                <a href={detail} target="_blank">
+                <a href={detail} target="_blank" className="hover:underline">
                     {detail}
                 </a>
             ) : (

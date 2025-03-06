@@ -15,7 +15,9 @@ const GitHubFinder = () => {
     const fetchUser = async (username: string) => {
         setLoading(true);
         try {
-            const res = await fetch(`https://api.github.com/users/${username}`);
+            const res = await fetch(
+                `https://api.github.com/users/${username.trim()}`
+            );
             if (!res.ok) {
                 throw new Error("User not found");
             }
@@ -44,9 +46,9 @@ const GitHubFinder = () => {
             className="flex items-center justify-center h-dvh w-dvw bg-gf-bg-secondary"
             data-theme={theme}
         >
-            <div className="w-[730px] flex flex-col gap-6">
+            <div className="flex flex-col gap-6 max-sm:w-[327px] md:w-[730px]">
                 <div className="font-bold flex items-center justify-between">
-                    <h1 className="text-[26px] text-gf-text-base-bold">
+                    <h1 className="text-[26px] text-gf-text-base-bold lowercase">
                         devfinder
                     </h1>
                     <button
@@ -80,7 +82,7 @@ const GitHubFinder = () => {
                                 <input
                                     type="text"
                                     placeholder="Search Github username..."
-                                    className="focus:outline-none font-[18px] ml-4 w-[300px] text-gf-text-base-primary"
+                                    className="focus:outline-none font-[18px] ml-4 max-sm:w-[150px] md:w-[300px] text-gf-text-base-primary"
                                     value={username}
                                     onChange={(e) =>
                                         setUsername(e.target.value)
@@ -97,7 +99,7 @@ const GitHubFinder = () => {
                         </div>
                         <button
                             type="submit"
-                            className="py-3 px-4 bg-gf-color-primary rounded-[10px] text-white text-[16px]/[24px] font-bold hover:cursor-pointer"
+                            className="py-3 px-4 bg-gf-color-primary rounded-[10px] text-white text-[16px]/[24px] font-bold hover:cursor-pointer hover:bg-[#60ABFF]"
                         >
                             Search
                         </button>
@@ -113,11 +115,9 @@ const GitHubFinder = () => {
                                     alt="User Avatar"
                                     width={150}
                                     height={150}
-                                    placeholder="blur"
-                                    blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAAAAAAAD/2wBDAAoHBwkICQoLDRwUGBwXGBAaGBwYHCAgJCAgMCgoLCgoeHBQhJSkqJSAgJS0jJSkfJkK6s9YZM0FYzAc7mLxER34Lz5GrNfpd1HVkMjMyOzJh5mtkg6MQPxEjcfk5wAAAAD/2wBDAQ0NDR4eJ0UbHxZXI0k7XFE1dsoZGQUuQkF9MPzyvnIfw3tcIfiZmV9X8YWa3Hpw0wz64uEqm2Uayqz1iA3Fih9Ek1icpZz96lz//2wBDAQ0N"
                                 />
                             </div>
-                            <div className="w-full flex flex-col gap-4">
+                            <div className="w-full flex flex-col">
                                 <div className="flex items-center justify-between gap-4">
                                     <h1 className="font-bold text-[26px] text-gf-text-base-bold">
                                         {userData.name}
@@ -150,7 +150,7 @@ const GitHubFinder = () => {
                                         />
                                     </div>
                                 </div>
-                                <div className="grid grid-cols-2 gap-4 text-gf-text-base-primary">
+                                <div className="grid grid-cols-2 gap-4 text-gf-text-base-primary mt-6">
                                     <UserDetails
                                         type="location"
                                         detail={userData.location}
