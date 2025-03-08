@@ -4,7 +4,7 @@ This is a solution to the [GitHub user search app challenge on Frontend Mentor](
 
 ### Screenshot
 
-![](public\image.png)
+![](./public/image.png)
 
 ### Links
 
