@@ -4,7 +4,7 @@ import { UserDetailType } from "../types/types";
 
 const UserInfo = ({ type, detail }: UserDetailType) => {
     return (
-        <div className="flex gap-4 items-center text-[15px]">
+        <div className="flex gap-4 items-center">
             <Image
                 src={`/images/icon-${type}.svg`}
                 alt="location.svg"

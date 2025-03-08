@@ -43,10 +43,10 @@ const GitHubFinder = () => {
 
     return (
         <div
-            className="flex items-center justify-center h-dvh w-dvw bg-gf-bg-secondary"
+            className="flex md:items-center justify-center h-dvh w-dvw bg-gf-bg-secondary pt-10"
             data-theme={theme}
         >
-            <div className="flex flex-col gap-6 max-sm:w-[327px] md:w-[730px]">
+            <div className="flex flex-col gap-6 max-sm:w-[327px] max-md:w-[573px] w-[730px] ">
                 <div className="font-bold flex items-center justify-between">
                     <h1 className="text-[26px] text-gf-text-base-bold lowercase">
                         devfinder
@@ -61,7 +61,9 @@ const GitHubFinder = () => {
                     >
                         {theme === "light" ? "dark" : "light"}
                         <Image
-                            src="/images/icon-moon.svg"
+                            src={`/images/icon-${
+                                theme === "light" ? "moon" : "sun"
+                            }.svg`}
                             alt=""
                             width={20}
                             height={20}
@@ -69,20 +71,22 @@ const GitHubFinder = () => {
                     </button>
                 </div>
                 <form onSubmit={handleSubmit}>
-                    <div className="rounded-[15px] p-3 shadow-lg flex items-center justify-between bg-gf-bg-primary">
-                        <div className="flex items-center justify-between w-full px-6">
+                    <div className="rounded-[15px] p-2 shadow-lg flex items-center justify-between bg-gf-bg-primary">
+                        <div className="flex items-center justify-between w-full md:px-6 px-2">
                             <div className="flex items-center">
-                                <Image
-                                    src="/images/icon-search.svg"
-                                    alt="Search Icon"
-                                    width={20}
-                                    height={20}
-                                    className=""
-                                />
+                                <div className="w-[20px] h-[20px] mr-2 md:mr-4">
+                                    <Image
+                                        src="/images/icon-search.svg"
+                                        alt="Search Icon"
+                                        width={20}
+                                        height={20}
+                                        className=""
+                                    />
+                                </div>
                                 <input
                                     type="text"
                                     placeholder="Search Github username..."
-                                    className="focus:outline-none font-[18px] ml-4 max-sm:w-[150px] md:w-[300px] text-gf-text-base-primary"
+                                    className="focus:outline-none leading-[25px] text-[13px] md:text-[18px] w-[160px] sm:w-[300px] text-gf-text-base-primary"
                                     value={username}
                                     onChange={(e) =>
                                         setUsername(e.target.value)
@@ -91,7 +95,7 @@ const GitHubFinder = () => {
                             </div>
                             {!found && (
                                 <div>
-                                    <p className="text-[#F74646] font-bold">
+                                    <p className="text-[#F74646] font-bold pr-2 max-sm:hidden">
                                         No results
                                     </p>
                                 </div>
@@ -99,43 +103,63 @@ const GitHubFinder = () => {
                         </div>
                         <button
                             type="submit"
-                            className="py-3 px-4 bg-gf-color-primary rounded-[10px] text-white text-[16px]/[24px] font-bold hover:cursor-pointer hover:bg-[#60ABFF]"
+                            className="py-3 px-4 bg-gf-color-primary rounded-[10px] text-white text-[14px] md:text-[16px] font-bold hover:cursor-pointer hover:bg-[#60ABFF]"
                         >
                             Search
                         </button>
                     </div>
                 </form>
-                <div className="bg-gf-bg-primary p-8 rounded-[15px] shadow-lg">
+                <div className="bg-gf-bg-primary p-6 md:p-8 rounded-[15px] shadow-lg">
                     {userData ? (
                         <div className="flex justify-center gap-8">
-                            <div className="w-[150px] h-[150px]">
+                            <div className="w-[150px] h-[150px] max-md:hidden">
                                 <Image
-                                    className="rounded-full"
+                                    className="rounded-full shadow-lg"
                                     src={userData.avatar_url}
                                     alt="User Avatar"
                                     width={150}
                                     height={150}
                                 />
                             </div>
-                            <div className="w-full flex flex-col">
-                                <div className="flex items-center justify-between gap-4">
-                                    <h1 className="font-bold text-[26px] text-gf-text-base-bold">
-                                        {userData.name}
-                                    </h1>
-                                    <p className="text-[15px] text-gf-text-base-light">
-                                        Joined&nbsp;
-                                        {formatDate(userData.created_at)}
-                                    </p>
+                            <div className="w-full flex flex-col gap-6 md:gap-4">
+                                <div className="flex justify-between">
+                                    <div className="flex w-full md:justify-between items-center">
+                                        <div className="w-[70px] h-[70px] sm:w-[117px] sm:h-[117px] md:hidden overflow-hidden">
+                                            <Image
+                                                className="rounded-full shadow-lg object-cover"
+                                                src={userData.avatar_url}
+                                                alt="User Avatar"
+                                                width={117} // Adjusted for consistency
+                                                height={117} // Adjusted for consistency
+                                            />
+                                        </div>
+
+                                        <div className="max-sm:ml-4 max-md:ml-8">
+                                            <h1 className="font-bold text-[16px] sm:text-[26px] text-gf-text-base-bold">
+                                                {userData.name}
+                                            </h1>
+                                            <p className="text-gf-color-primary text-[13px] sm:text-[16px]">
+                                                @{userData.login}
+                                            </p>
+                                            <p className="text-[13px] sm:text-[15px] mt-2 text-gf-text-base-light md:hidden">
+                                                Joined&nbsp;
+                                                {formatDate(
+                                                    userData.created_at
+                                                )}
+                                            </p>
+                                        </div>
+                                        <p className="text-[15px] text-gf-text-base-light md:pt-2 max-md:hidden">
+                                            Joined&nbsp;
+                                            {formatDate(userData.created_at)}
+                                        </p>
+                                    </div>
                                 </div>
                                 <div className="flex flex-col gap-8">
-                                    <p className="text-gf-color-primary">
-                                        @{userData.login}
-                                    </p>
-                                    <p className="text-gf-text-base-light">
+                                    <p className="text-gf-text-base-light leading-[25px] text-[13px] md:text-[15px]">
                                         {userData.bio ||
                                             "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros."}
                                     </p>
-                                    <div className="px-8 py-4 bg-gf-bg-secondary rounded-[10px] flex justify-between">
+                                    <div className="px-4 py-6 sm:px-8 sm:py-4 bg-gf-bg-secondary rounded-[10px] grid grid-cols-3 sm:flex sm:justify-between ">
                                         <UserInfo
                                             type="Repo"
                                             info={userData.public_repos}
@@ -150,7 +174,7 @@ const GitHubFinder = () => {
                                         />
                                     </div>
                                 </div>
-                                <div className="grid grid-cols-2 gap-4 text-gf-text-base-primary mt-6">
+                                <div className="sm:grid sm:grid-cols-2 flex flex-col gap-4 text-gf-text-base-primary mt-6 text-[13px] md:text-[15px]">
                                     <UserDetails
                                         type="location"
                                         detail={userData.location}

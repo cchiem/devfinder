@@ -21,5 +21,5 @@ export interface UserInfoType {
 
 export interface UserDetailType {
     type: string;
-    detail: string;
+    detail: string | null;
 }
