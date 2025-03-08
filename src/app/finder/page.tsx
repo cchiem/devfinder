@@ -26,6 +26,7 @@ const GitHubFinder = () => {
             console.log(result);
             setFound(true);
         } catch (error) {
+            console.log(error);
             setFound(false);
             setTimeout(() => {
                 setFound(true);
@@ -89,7 +90,7 @@ const GitHubFinder = () => {
                                 <input
                                     type="text"
                                     placeholder="Search Github username..."
-                                    className="focus:outline-none leading-[25px] text-[13px] md:text-[18px] w-full text-gf-text-base-primary"
+                                    className="focus:outline-none leading-[25px] text-[13px] md:text-[18px] w-full text-gf-text-base-primary caret-gf-color-primary"
                                     value={username}
                                     onChange={(e) =>
                                         setUsername(e.target.value)
@@ -126,7 +127,7 @@ const GitHubFinder = () => {
                             </div>
                             <div className="w-full flex flex-col gap-6 md:gap-4">
                                 <div className="flex justify-between">
-                                    <div className="flex w-full md:justify-between items-center">
+                                    <div className="flex w-full md:justify-between max-md:items-center">
                                         <div className="w-[70px] h-[70px] sm:w-[117px] sm:h-[117px] md:hidden overflow-hidden">
                                             <Image
                                                 className="rounded-full shadow-lg object-cover"
@@ -141,9 +142,13 @@ const GitHubFinder = () => {
                                             <h1 className="font-bold text-[16px] sm:text-[26px] text-gf-text-base-bold">
                                                 {userData.name}
                                             </h1>
-                                            <p className="text-gf-color-primary text-[13px] sm:text-[16px]">
+                                            <a
+                                                href={userData.html_url}
+                                                target="_blank"
+                                                className="text-gf-color-primary text-[13px] sm:text-[16px] hover:underline"
+                                            >
                                                 @{userData.login}
-                                            </p>
+                                            </a>
                                             <p className="text-[13px] sm:text-[15px] mt-2 text-gf-text-base-light md:hidden">
                                                 Joined&nbsp;
                                                 {formatDate(

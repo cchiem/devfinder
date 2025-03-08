@@ -6,10 +6,10 @@ export interface UserDataType {
     html_url: string;
     avatar_url: string;
     public_repos: number;
-    blog: string | null;
-    twitter_username: string | null;
-    company: string | null;
-    location: string | null;
+    blog: string;
+    twitter_username: string;
+    company: string;
+    location: string;
     bio: string | null;
     created_at: string;
 }
@@ -21,5 +21,5 @@ export interface UserInfoType {
 
 export interface UserDetailType {
     type: string;
-    detail: string | null;
+    detail: string | "";
 }
