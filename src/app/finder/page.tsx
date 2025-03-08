@@ -27,6 +27,9 @@ const GitHubFinder = () => {
             setFound(true);
         } catch (error) {
             setFound(false);
+            setTimeout(() => {
+                setFound(true);
+            }, 5000);
         } finally {
             setLoading(false);
         }
@@ -46,7 +49,7 @@ const GitHubFinder = () => {
             className="flex md:items-center justify-center h-dvh w-dvw bg-gf-bg-secondary pt-10"
             data-theme={theme}
         >
-            <div className="flex flex-col gap-6 max-sm:w-[327px] max-md:w-[573px] w-[730px] ">
+            <div className="flex flex-col gap-6 max-sm:p-8 max-md:w-[573px] w-[730px] ">
                 <div className="font-bold flex items-center justify-between">
                     <h1 className="text-[26px] text-gf-text-base-bold lowercase">
                         devfinder
@@ -73,20 +76,20 @@ const GitHubFinder = () => {
                 <form onSubmit={handleSubmit}>
                     <div className="rounded-[15px] p-2 shadow-lg flex items-center justify-between bg-gf-bg-primary">
                         <div className="flex items-center justify-between w-full md:px-6 px-2">
-                            <div className="flex items-center">
-                                <div className="w-[20px] h-[20px] mr-2 md:mr-4">
+                            <div className="flex items-center w-full justify-between">
+                                <div className="w-[24px] h-[24px] mr-2 md:mr-4">
                                     <Image
                                         src="/images/icon-search.svg"
                                         alt="Search Icon"
-                                        width={20}
-                                        height={20}
-                                        className=""
+                                        width={24}
+                                        height={24}
+                                        className="object-cover"
                                     />
                                 </div>
                                 <input
                                     type="text"
                                     placeholder="Search Github username..."
-                                    className="focus:outline-none leading-[25px] text-[13px] md:text-[18px] w-[160px] sm:w-[300px] text-gf-text-base-primary"
+                                    className="focus:outline-none leading-[25px] text-[13px] md:text-[18px] w-full text-gf-text-base-primary"
                                     value={username}
                                     onChange={(e) =>
                                         setUsername(e.target.value)
@@ -95,7 +98,7 @@ const GitHubFinder = () => {
                             </div>
                             {!found && (
                                 <div>
-                                    <p className="text-[#F74646] font-bold pr-2 max-sm:hidden">
+                                    <p className="text-[#F74646] ml-4 font-bold w-[100px] text-[13px] sm:text-[15px]">
                                         No results
                                     </p>
                                 </div>
