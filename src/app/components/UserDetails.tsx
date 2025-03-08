@@ -1,11 +1,13 @@
 import Image from "next/image";
-import React, { useState } from "react";
+import React from "react";
 import { UserDetailType } from "../types/types";
 
 const UserInfo = ({ type, detail }: UserDetailType) => {
     return (
         <div
-            className={`flex gap-4 items-center ${!detail ? "opacity-60" : ""}`}
+            className={`flex gap-4 items-center ${
+                !detail ? "opacity-60 select-none" : ""
+            }`}
         >
             <Image
                 src={`/images/icon-${type}.svg`}

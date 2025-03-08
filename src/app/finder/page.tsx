@@ -9,11 +9,9 @@ import UserInfo from "../components/UserInfo";
 const GitHubFinder = () => {
     const [username, setUsername] = useState("cchiem");
     const [userData, setUserData] = useState<UserDataType>();
-    const [loading, setLoading] = useState(false);
     const [found, setFound] = useState(true);
     const [theme, setTheme] = useState("light");
     const fetchUser = async (username: string) => {
-        setLoading(true);
         try {
             const res = await fetch(
                 `https://api.github.com/users/${username.trim()}`
@@ -32,7 +30,6 @@ const GitHubFinder = () => {
                 setFound(true);
             }, 5000);
         } finally {
-            setLoading(false);
         }
     };
 
@@ -41,9 +38,13 @@ const GitHubFinder = () => {
         fetchUser(username);
     };
 
+    const toggleTheme = () => {
+        setTheme((prev) => (prev === "light" ? "dark" : "light"));
+    };
+
     useEffect(() => {
         fetchUser(username);
-    }, []);
+    }, [username]);
 
     return (
         <div
@@ -56,11 +57,9 @@ const GitHubFinder = () => {
                         devfinder
                     </h1>
                     <button
-                        className="text-[13px] text-gf-text-base-light tracking-[2.5px] flex items-center gap-4 hover:cursor-pointer uppercase"
+                        className="text-[13px] text-gf-text-base-light tracking-[2.5px] flex items-center gap-4 hover:cursor-pointer uppercase select-none"
                         onClick={() => {
-                            theme === "light"
-                                ? setTheme("dark")
-                                : setTheme("light");
+                            toggleTheme();
                         }}
                     >
                         {theme === "light" ? "dark" : "light"}
@@ -78,7 +77,7 @@ const GitHubFinder = () => {
                     <div className="rounded-[15px] p-2 shadow-lg flex items-center justify-between bg-gf-bg-primary">
                         <div className="flex items-center justify-between w-full md:px-6 px-2">
                             <div className="flex items-center w-full justify-between">
-                                <div className="w-[24px] h-[24px] mr-2 md:mr-4">
+                                <div className="w-[24px] h-[24px] mr-2 md:mr-4 select-none">
                                     <Image
                                         src="/images/icon-search.svg"
                                         alt="Search Icon"
@@ -107,7 +106,7 @@ const GitHubFinder = () => {
                         </div>
                         <button
                             type="submit"
-                            className="py-3 px-4 bg-gf-color-primary rounded-[10px] text-white text-[14px] md:text-[16px] font-bold hover:cursor-pointer hover:bg-[#60ABFF]"
+                            className="py-3 px-4 bg-gf-color-primary rounded-[10px] text-white text-[14px] md:text-[16px] font-bold hover:cursor-pointer hover:bg-[#60ABFF] select-none"
                         >
                             Search
                         </button>
