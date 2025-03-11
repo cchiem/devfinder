@@ -8,7 +8,7 @@ This is a solution to the [GitHub user search app challenge on Frontend Mentor](
 
 ### Links
 
--   Live Site URL: [cchiem-github-finder.vercel.app](cchiem-github-finder.vercel.app/)
+-   Live Site URL: [cchiem-github-finder.vercel.app/](https://cchiem-github-finder.vercel.app/)
 
 ### Built with
 
